@@ -1,0 +1,19 @@
+# Ignore files from IDE JetBrains (PyCharm, IntelliJ, etc.)
+.idea/
+*.iml
+*.json
+# Python virtual environment
+venv/
+.venv/
+__pycache__/
+# Ignore models folder
+!models/.gitkeep
+models/macros.j2
+syntax/*
+notes/*
+input_test/*
+app/pytest.py
+app/pytest_exha.py
+app/textx
+app/prueba.py
+app/syntax.py

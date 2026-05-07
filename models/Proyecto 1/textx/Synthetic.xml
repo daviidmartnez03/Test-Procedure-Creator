@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Version Revision="V0.1">
+  <Equipment EquipmentName="EQUIPMENT_1">
+    <Module ModuleName="MODULE_1">
+      <Partition PartitionName="PARTITION_1">
+        <Message MessageName="MESSAGE_1">
+          <Level LevelName="">
+            <Information InformationName="SIGNAL_1" Type="enum">
+              <Values EnumValue="SEND" Value="1"/>
+              <Values EnumValue="NOT_SEND" Value="0"/>
+            </Information>
+            <Information InformationName="SIGNAL_2" Type="bool"/>
+            <Information InformationName="SIGNAL_3" Type="bool"/>
+            <Information InformationName="SIGNAL_4" Type="bool"/>
+            <Information InformationName="SIGNAL_5" Type="bool"/>
+            <Information InformationName="SIGNAL_6" Type="bool"/>
+            <Information InformationName="SIGNAL_7" Type="bool"/>
+            <Information InformationName="SIGNAL_8" Type="bool"/>
+            <Information InformationName="SIGNAL_9" Type="bool"/>
+          </Level>
+        </Message>
+        <Message MessageName="MESSAGE_2">
+          <Level LevelName="LEVEL_2">
+            <Information InformationName="SIGNAL_10" Type="bool"/>
+            <Information InformationName="SIGNAL_11" Type="bool"/>
+            <Information InformationName="SIGNAL_12" Type="bool"/>
+            <Information InformationName="SIGNAL_13" Type="bool"/>
+            <Information InformationName="SIGNAL_14" Type="bool"/>
+          </Level>
+          <Level LevelName="LEVEL_3">
+            <Information InformationName="SIGNAL_15" Type="bool"/>
+            <Information InformationName="SIGNAL_16" Type="bool"/>
+            <Information InformationName="SIGNAL_17" Type="bool"/>
+          </Level>
+        </Message>
+        <Message MessageName="DATA_SENT">
+          <Level LevelName="">
+            <Information InformationName="SIGNAL_25" Type="enum">
+              <Values EnumValue="OFF" Value="0"/>
+              <Values EnumValue="ON" Value="1"/>
+            </Information>
+            <Information InformationName="SIGNAL_19" Type="uint"/>
+          </Level>
+        </Message>
+        <Message MessageName="MESSAGE_10">
+          <Level LevelName="">
+            <Information InformationName="EQUIPMENT_STATE" Type="enum">
+              <Values EnumValue="OFF" Value="0"/>
+              <Values EnumValue="ON" Value="1"/>
+            </Information>
+            <Information InformationName="SIGNAL_19" Type="uint"/>
+          </Level>
+        </Message>
+        <Message MessageName="MESSAGE_4">
+          <Level LevelName="">
+            <Information InformationName="SIGNAL_20" Type="uint"/>
+            <Information InformationName="SIGNAL_21" Type="uint"/>
+            <Information InformationName="EQUIPMENT1_MODE" Type="enum">
+              <Values EnumValue="ON" Value="0"/>
+              <Values EnumValue="OFF" Value="1"/>
+              <Values EnumValue="SEND_OK" Value="2"/>
+              <Values EnumValue="LISTEN" Value="3"/>
+            </Information>
+          </Level>
+        </Message>
+      </Partition>
+      <Partition PartitionName="PARTITION_2">
+        <Message MessageName="MESSAGE_5">
+          <Level LevelName="">
+            <Information InformationName="SIGNAL_23" Type="bool"/>
+            <Information InformationName="SIGNAL_24" Type="bool"/>
+          </Level>
+          <Level LevelName="LEVEL_3">
+            <Information InformationName="SIGNAL_23" Type="float"/>
+            <Information InformationName="SIGNAL_10" Type="float"/>
+          </Level>
+        </Message>
+      </Partition>
+    </Module>
+  </Equipment>
+  <Equipment EquipmentName="EQUIPMENT_2">
+    <Module ModuleName="MODULE_2">
+      <Partition PartitionName="PARTITION_2">
+        <Message MessageName="MESSAGE_9">
+          <Level LevelName="">
+            <Information InformationName="EQUIPMENT2_MODE" Type="enum">
+              <Values EnumValue="ON" Value="0"/>
+              <Values EnumValue="OFF" Value="1"/>
+              <Values EnumValue="SEND_OK" Value="2"/>
+              <Values EnumValue="LISTEN" Value="3"/>
+            </Information>
+            <Information InformationName="EQUIPMENT_STATE" Type="enum">
+              <Values EnumValue="OFF" Value="0"/>
+              <Values EnumValue="ON" Value="1"/>
+            </Information>
+          </Level>
+        </Message>
+        <Message MessageName="DATA_UPDATED">
+          <Level LevelName="">
+            <Information InformationName="SIGNAL_22" Type="enum">
+              <Values EnumValue="ON" Value="0"/>
+              <Values EnumValue="OFF" Value="1"/>
+              <Values EnumValue="SEND_OK" Value="2"/>
+              <Values EnumValue="LISTEN" Value="3"/>
+            </Information>
+            <Information InformationName="SEÑAL_23" Type="enum">
+              <Values EnumValue="OFF" Value="0"/>
+              <Values EnumValue="ON" Value="1"/>
+            </Information>
+          </Level>
+        </Message>
+      </Partition>
+    </Module>
+  </Equipment>
+  <MilbusNetwork Name="BUS_1">
+    <MilbusFraming Name="BUS_1_ON" Value="1"/>
+    <MilbusFraming Name="BUS_1_OFF" Value="2"/>
+    <MilbusFraming Name="BUS_1_WAIT" Value="3"/>
+  </MilbusNetwork>
+  <MilbusNetwork Name="BUS_2">
+    <MilbusFraming Name="BUS_1_ON" Value="0"/>
+    <MilbusFraming Name="BUS_2_OFF" Value="1"/>
+    <MilbusFraming Name="BUS_2_WAIT" Value="2"/>
+  </MilbusNetwork>
+</Version>

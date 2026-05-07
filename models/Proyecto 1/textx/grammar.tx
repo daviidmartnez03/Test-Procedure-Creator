@@ -1,0 +1,166 @@
+// Template defined by an ordered list of instructions
+Template:
+    instructions*=Instruction
+;
+
+// All possible instructions
+Instruction:
+    Set | Suspend | Send | End_Cycle | Chk_Wt_Eq | Chk_Sp_Eq | Traceability | Jinja_Code | Jinja_Comment | Note
+;
+
+// SET Instruction
+Set:
+    Set_with_Level_FullForm | Set_with_Level_ShortForm | Set_FullForm_or_Set_with_Level_Extended_Form | Set_ExtendedForm | Set_ShortForm_or_Framing_1553
+;
+
+Set_with_Level_FullForm:
+    'SET' equipment_name=ValueTypes '.' module_name=ValueTypes '.' partition_name=ValueTypes '.' message_name=ValueTypes '.' level=ValueTypes '.' signal=ValueTypes '.' signal_type=ValueTypes '=' value=ValueTypes
+    |
+    equipment_name=ValueTypes '.' module_name=ValueTypes '.' partition_name=ValueTypes '.' message_name=ValueTypes '.' level=ValueTypes '.' signal=ValueTypes '.' signal_type=ValueTypes '=' value=ValueTypes
+;
+
+Set_with_Level_ShortForm:
+    'SET' message_or_level_name=ValueTypes '.' signal=ValueTypes '=' value=ValueTypes
+    |
+    message_or_level_name=ValueTypes '.' signal=ValueTypes '=' value=ValueTypes
+;
+
+Set_FullForm_or_Set_with_Level_Extended_Form:
+    'SET' equipment_name=ValueTypes '.' module_name=ValueTypes '.' partition_name=ValueTypes '.' message_name=ValueTypes '.' signal_or_level=ValueTypes '.' signal_type_or_signal=ValueTypes '=' value=ValueTypes
+    |
+    equipment_name=ValueTypes '.' module_name=ValueTypes '.' partition_name=ValueTypes '.' message_name=ValueTypes '.' signal_or_level=ValueTypes '.' signal_type_or_signal=ValueTypes '=' value=ValueTypes
+;
+
+Set_ExtendedForm:
+    'SET' equipment_name=ValueTypes '.' module_name=ValueTypes '.' partition_name=ValueTypes '.' message_name=ValueTypes '.' signal=ValueTypes '=' value=ValueTypes
+    |
+    equipment_name=ValueTypes '.' module_name=ValueTypes '.' partition_name=ValueTypes '.' message_name=ValueTypes '.' signal=ValueTypes '=' value=ValueTypes
+;
+
+Set_ShortForm_or_Framing_1553:
+    'SET' signal_or_bus_name=ValueTypes '=' value=ValueTypes
+    |
+    signal_or_bus_name=ValueTypes '=' value=ValueTypes
+;
+
+// SUSPEND Instruction
+Suspend:
+    Suspend_True | Suspend_False
+;
+
+Suspend_True:
+    Suspend_True_FullForm | Suspend_True_ShortForm
+;
+
+Suspend_True_FullForm:
+    'FREEZE:' equipment_name=ValueTypes '.' module_name=ValueTypes '.' partition_name=ValueTypes '.' message_name=ValueTypes
+;
+
+Suspend_True_ShortForm:
+    'FREEZE:' message_name=ValueTypes
+;
+
+Suspend_False:
+    Suspend_False_FullForm | Suspend_False_ShortForm
+;
+
+Suspend_False_FullForm:
+    'UNFREEZE:' equipment_name=ValueTypes '.' module_name=ValueTypes '.' partition_name=ValueTypes '.' message_name=ValueTypes
+;
+
+Suspend_False_ShortForm:
+    'UNFREEZE:' message_name=ValueTypes
+;
+
+// SEND Instruction
+Send:
+    Send_FullForm | Send_ShortForm
+;
+
+Send_FullForm:
+    'SEND:' equipment_name=ValueTypes '.' module_name=ValueTypes '.' partition_name=ValueTypes '.' message_name=ValueTypes
+;
+
+Send_ShortForm:
+    'SEND:' message_name=ValueTypes
+;
+
+// END_CYCLE Instruction
+End_Cycle:
+    name='END_CYCLE'
+;
+
+// CHK_WT_EQ Instruction
+Chk_Wt_Eq:
+    Chk_Wt_Eq_with_Level_FullForm | Chk_Wt_Eq_with_Level_ShortForm | Chk_Wt_Eq_FullForm_or_Chk_Wt_Eq_with_Level_Extended_Form | Chk_Wt_Eq_ExtendedForm | Chk_Wt_Eq_ShortForm
+;
+
+Chk_Wt_Eq_with_Level_FullForm:
+    'VER:' equipment_name=ValueTypes '.' module_name=ValueTypes '.' partition_name=ValueTypes '.' message_name=ValueTypes '.' level=ValueTypes '.' signal=ValueTypes '.' signal_type=ValueTypes '=' value=ValueTypes '(Timeout=' time_interval=ValueTypes ')'
+;
+
+Chk_Wt_Eq_with_Level_ShortForm:
+    'VER:' message_or_level_name=ValueTypes '.' signal=ValueTypes '=' value=ValueTypes '(Timeout=' time_interval=ValueTypes ')'
+;
+
+Chk_Wt_Eq_FullForm_or_Chk_Wt_Eq_with_Level_Extended_Form:
+    'VER:' equipment_name=ValueTypes '.' module_name=ValueTypes '.' partition_name=ValueTypes '.' message_name=ValueTypes '.' signal_or_level=ValueTypes '.' signal_type_or_signal=ValueTypes '=' value=ValueTypes '(Timeout=' time_interval=ValueTypes ')'
+;
+
+Chk_Wt_Eq_ExtendedForm:
+    'VER:' equipment_name=ValueTypes '.' module_name=ValueTypes '.' partition_name=ValueTypes '.' message_name=ValueTypes '.' signal=ValueTypes '=' value=ValueTypes '(Timeout=' time_interval=ValueTypes ')'
+;
+
+Chk_Wt_Eq_ShortForm:
+    'VER:' signal=ValueTypes '=' value=ValueTypes '(Timeout=' time_interval=ValueTypes ')'
+;
+
+// CHK_SP_EQ Instruction
+Chk_Sp_Eq:
+    Chk_Sp_Eq_with_Level_FullForm | Chk_Sp_Eq_with_Level_ShortForm | Chk_Sp_Eq_FullForm_or_Chk_Sp_Eq_with_Level_Extended_Form | Chk_Sp_Eq_ExtendedForm | Chk_Sp_Eq_ShortForm
+;
+
+Chk_Sp_Eq_with_Level_ShortForm:
+    'VER:' message_or_level_name=ValueTypes '.' signal=ValueTypes '=' value=ValueTypes
+;
+
+Chk_Sp_Eq_with_Level_FullForm:
+    'VER:' equipment_name=ValueTypes '.' module_name=ValueTypes '.' partition_name=ValueTypes '.' message_name=ValueTypes '.' level=ValueTypes '.' signal=ValueTypes '.' signal_type=ValueTypes '=' value=ValueTypes
+;
+
+Chk_Sp_Eq_FullForm_or_Chk_Sp_Eq_with_Level_Extended_Form:
+    'VER:' equipment_name=ValueTypes '.' module_name=ValueTypes '.' partition_name=ValueTypes '.' message_name=ValueTypes '.' signal_or_level=ValueTypes '.' signal_type_or_signal=ValueTypes '=' value=ValueTypes
+;
+
+Chk_Sp_Eq_ExtendedForm:
+    'VER:' equipment_name=ValueTypes '.' module_name=ValueTypes '.' partition_name=ValueTypes '.' message_name=ValueTypes '.' signal=ValueTypes '=' value=ValueTypes
+;
+
+Chk_Sp_Eq_ShortForm:
+    'VER:' signal=ValueTypes '=' value=ValueTypes
+;
+
+// TRACEABILITY Instruction
+Traceability:
+    'TRAC:' pss_reqs=ValueTypes instant=ValueTypes 
+;
+
+// Ignore Jinja2 code while processing
+Jinja_Code:
+    jinja_code=/(?s)\{%.*?%\}/
+;
+
+// Ignore Jinja2 comments while processing
+Jinja_Comment:
+    jinja_comment=/(?s)\{#.*?#\}/
+;
+
+// NOTE Instruction
+Note:
+    '//' comment_text=/[^\n]*/
+;
+
+// /(?:[\w\[\]\-]|\{\{.*?\}\})+/ permits strings, list and jinja variables
+ValueTypes:
+    NUMBER | /(?:[\w\[\]\-]|\{\{.*?\}\})+/ 
+;
