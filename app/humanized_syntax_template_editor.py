@@ -768,7 +768,7 @@ class HumanizedSyntaxProcessFeatures:
         PROJECT_ROOT_DIR = os.path.dirname(CURRENT_SCRIPT_DIR)
         MODEL_DIR = os.path.join(PROJECT_ROOT_DIR, "models/Proyecto 1")
 
-        xml_path = os.path.join(MODEL_DIR, "textx/IRS.xml")
+        xml_path = os.path.join(MODEL_DIR, "textx/Synthetic.xml")
         grammar_path = os.path.join(MODEL_DIR, "textx/grammar.tx")
         
         self.meta_model = metamodel_from_file(grammar_path)

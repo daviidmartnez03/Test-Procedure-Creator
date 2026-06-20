@@ -1110,9 +1110,7 @@ def extract_variables_from_file(parameters_filepath, return_dict_variable_value=
                     line = line.strip()
                     if not line or line.startswith("#"):
                         continue
-                    mwo._process_file_with_active_syntax(line, data)
-
-            data["FILENAME"] = os.path.basename(parameters_filepath).split(".")[0]
+                    mwo._process_file_with_active_syntax(line, data, parameters_filepath)
 
             for key_name, item in data.items():
                 print(f"{key_name}: {item}")

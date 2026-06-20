@@ -1,0 +1,20 @@
+{# Test initialization and establishment of requirements #}
+
+// System initialization and traceability definition
+TRAC: {{PSS_REQS}} BEGIN
+
+// POWER ON both equipments
+{% for equipment_state in EQUIP_SIGNAL %}
+	{{EQUIP_MESSAGE}}.{{equipment_state}} = ON
+{% endfor %}
+
+{% for _ in EQUIPMENTS %}
+	// Check if {{EQUIPMENTS[loop.index0]}} send the message {{MESSAGES[loop.index0]}}, {{EQUIPMENTS[(loop.index0+1)%2]}} respond with {{STATES[1]}}
+	{{MESSAGES[loop.index0]}}.{{SIGNALS[loop.index0]}} = {{VALUES[loop.index0]}}
+	{{MODE_SIGNALS[(loop.index0+1)%2]}} = {{STATES[0]}}
+	SEND: {{MESSAGES[loop.index0]}}
+	VER: {{MODE_SIGNALS[(loop.index0+1)%2]}} = {{STATES[1]}} (Timeout=40)
+	END_CYCLE
+{% endfor %}
+
+TRAC: {{PSS_REQS}} END

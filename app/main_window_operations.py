@@ -759,7 +759,7 @@ def process_file(input_file, template_path, output_path):
 
                 # Active syntax config parsing
                 else:
-                    _process_file_with_active_syntax(line, data)
+                    _process_file_with_active_syntax(line, data, input_file)
                     
     except Exception as e:
         raise RuntimeError(f"Error reading file content: {str(e)}")
@@ -772,13 +772,12 @@ def process_file(input_file, template_path, output_path):
     output_filename = os.path.basename(input_file)
     full_output_path = os.path.join(output_path, output_filename)
 
-    data["FILENAME"] = output_filename.split(".")[0]
-    print(f"FILENAME: {data["FILENAME"]}")
-
     save_data(full_output_path, data, template_path)
 
-def _process_file_with_active_syntax(line, data):
+def _process_file_with_active_syntax(line, data, parameters_filepath):
     '''Extract the data of the parameter file with the active syntax model'''
+    data["FILENAME"] = os.path.basename(parameters_filepath).split(".")[0]
+
     syntax = get_syntax_config()
     parts = line.split(syntax["separator"])
     

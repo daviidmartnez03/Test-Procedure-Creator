@@ -33,34 +33,31 @@
             <Information InformationName="SIGNAL_17" Type="bool"/>
           </Level>
         </Message>
-        <Message MessageName="DATA_SENT">
+        <Message MessageName="DATA_RECEPTION">
           <Level LevelName="">
-            <Information InformationName="SIGNAL_25" Type="enum">
-              <Values EnumValue="OFF" Value="0"/>
-              <Values EnumValue="ON" Value="1"/>
-            </Information>
-            <Information InformationName="SIGNAL_19" Type="uint"/>
-          </Level>
-        </Message>
-        <Message MessageName="MESSAGE_10">
-          <Level LevelName="">
-            <Information InformationName="EQUIPMENT_STATE" Type="enum">
-              <Values EnumValue="OFF" Value="0"/>
-              <Values EnumValue="ON" Value="1"/>
-            </Information>
-            <Information InformationName="SIGNAL_19" Type="uint"/>
-          </Level>
-        </Message>
-        <Message MessageName="MESSAGE_4">
-          <Level LevelName="">
-            <Information InformationName="SIGNAL_20" Type="uint"/>
-            <Information InformationName="SIGNAL_21" Type="uint"/>
             <Information InformationName="EQUIPMENT1_MODE" Type="enum">
-              <Values EnumValue="ON" Value="0"/>
-              <Values EnumValue="OFF" Value="1"/>
-              <Values EnumValue="SEND_OK" Value="2"/>
               <Values EnumValue="LISTEN" Value="3"/>
+              <Values EnumValue="SEND_ACK" Value="2"/>
             </Information>
+            <Information InformationName="SIGNAL_19" Type="uint"/>
+          </Level>
+        </Message>
+        <Message MessageName="EQUIPMENT_STATE">
+          <Level LevelName="">
+            <Information InformationName="UPDATE_EQUIPMENT1_STATE" Type="enum">
+              <Values EnumValue="OFF" Value="0"/>
+              <Values EnumValue="ON" Value="1"/>
+            </Information>
+            <Information InformationName="SIGNAL_19" Type="uint"/>
+          </Level>
+        </Message>
+        <Message MessageName="SEND_DATA">
+          <Level LevelName="">
+            <Information InformationName="PREPARE_DATA" Type="enum">
+              <Values EnumValue="SEARCH" Value="2"/>
+              <Values EnumValue="ON" Value="1"/>
+            </Information>
+            <Information InformationName="SIGNAL_21" Type="uint"/>
           </Level>
         </Message>
       </Partition>
@@ -81,21 +78,15 @@
   <Equipment EquipmentName="EQUIPMENT_2">
     <Module ModuleName="MODULE_2">
       <Partition PartitionName="PARTITION_2">
-        <Message MessageName="MESSAGE_9">
+        <Message MessageName="EQUIPMENT_STATE">
           <Level LevelName="">
-            <Information InformationName="EQUIPMENT2_MODE" Type="enum">
-              <Values EnumValue="ON" Value="0"/>
-              <Values EnumValue="OFF" Value="1"/>
-              <Values EnumValue="SEND_OK" Value="2"/>
-              <Values EnumValue="LISTEN" Value="3"/>
-            </Information>
-            <Information InformationName="EQUIPMENT_STATE" Type="enum">
+            <Information InformationName="UPDATE_EQUIPMENT2_STATE" Type="enum">
               <Values EnumValue="OFF" Value="0"/>
               <Values EnumValue="ON" Value="1"/>
             </Information>
           </Level>
         </Message>
-        <Message MessageName="DATA_UPDATED">
+        <Message MessageName="DATA_RECEPTION">
           <Level LevelName="">
             <Information InformationName="SIGNAL_22" Type="enum">
               <Values EnumValue="ON" Value="0"/>
@@ -103,9 +94,19 @@
               <Values EnumValue="SEND_OK" Value="2"/>
               <Values EnumValue="LISTEN" Value="3"/>
             </Information>
-            <Information InformationName="SEÑAL_23" Type="enum">
-              <Values EnumValue="OFF" Value="0"/>
-              <Values EnumValue="ON" Value="1"/>
+            <Information InformationName="EQUIPMENT2_MODE" Type="enum">
+              <Values EnumValue="SEND_ACK" Value="2"/>
+              <Values EnumValue="LISTEN" Value="3"/>
+            </Information>
+          </Level>
+        </Message>
+        <Message MessageName="UPDATE_DATA">
+          <Level LevelName="">
+            <Information InformationName="CALCULATE_DATA" Type="enum">
+              <Values EnumValue="ON" Value="0"/>
+              <Values EnumValue="OFF" Value="1"/>
+              <Values EnumValue="UPDATE" Value="2"/>
+              <Values EnumValue="LISTEN" Value="3"/>
             </Information>
           </Level>
         </Message>
