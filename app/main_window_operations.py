@@ -669,6 +669,7 @@ def select_template(root):
                 except Exception as e:
                     messagebox.showerror("Error", f"Error in template: {template_name}\n {e}")
         elif result == "Normal":
+            project_name = "Normal"
             messagebox.showinfo("Info", f"Template selected: {template_name}")
 
 def select_output_path():
@@ -772,7 +773,7 @@ def process_file(input_file, template_path, output_path):
     output_filename = os.path.basename(input_file)
     full_output_path = os.path.join(output_path, output_filename)
 
-    save_data(full_output_path, data, template_path)
+    save_data(full_output_path, data, template_path, input_file)
 
 def _process_file_with_active_syntax(line, data, parameters_filepath):
     '''Extract the data of the parameter file with the active syntax model'''
@@ -803,23 +804,25 @@ def _process_file_with_active_syntax(line, data, parameters_filepath):
 
         data[parameter] = values
 
-def save_data(output_file_path, data, template_path):
+def save_data(output_file_path, data, template_path, input_file):
     """Feeds extracted data into the Jinja2 template and writes the final output"""
     specific_template_dir = os.path.dirname(template_path)
     template_name = os.path.basename(template_path)
     models_root_dir = MODELS_DIR
     
     try:
-        # Set up the environment
-        env = Environment(loader=FileSystemLoader([specific_template_dir, models_root_dir]), undefined=StrictUndefined)
-        template = env.get_template(template_name)
-        # Template render
-        content = template.render(data)
-        content = remove_indentation(content)
-        content = remove_extra_blank_lines(content)
-        if project_name == "HumanizedSyntax":
-            humanized_syntax_process_features_class = HumanizedSyntaxProcessFeatures(input_files[0], template_path)
-            content, _ = humanized_syntax_process_features_class.process_humanized_syntax_template(data_return=True, jinja_rendered_template_data=content) # process the rendered template with textX grammar
+        if project_name == "Normal":
+            # Set up the environment
+            env = Environment(loader=FileSystemLoader([specific_template_dir, models_root_dir]), undefined=StrictUndefined)
+            template = env.get_template(template_name)
+            # Template render
+            content = template.render(data)
+            content = remove_indentation(content)
+            content = remove_extra_blank_lines(content)
+
+        elif project_name == "HumanizedSyntax":
+            humanized_syntax_process_features_class = HumanizedSyntaxProcessFeatures(input_file, template_path)
+            content, _ = humanized_syntax_process_features_class.process_humanized_syntax_template(data_return=True) 
             content = "\n".join(content)
 
         os.makedirs(os.path.dirname(output_file_path), exist_ok=True)

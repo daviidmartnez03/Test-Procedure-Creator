@@ -856,34 +856,21 @@ class HumanizedSyntaxProcessFeatures:
 
     # ==== TEXTX MANAGEMENT ====
 
-    def process_humanized_syntax_template(self, data_return=False, jinja_rendered_template_data=None):
+    def process_humanized_syntax_template(self, data_return=False):
         """Main processing function with textX"""
         self.show_warning_window = False
         data = []
-        if jinja_rendered_template_data:
-            self._process_humanized_syntax_template(data, jinja_rendered_template_data) # jinja_rendered_template_data = content of the jinja template rendered (called in the main interface process files button)
-        else:
-            self._process_humanized_syntax_template(data)
-        
-        # when the user select a template in the main interface, we only process the template to see if there are errors (this happens when data_return=False)
-        # when data_return = True, return data and self.show_warning_window
-        if data_return:
-            return data, self.show_warning_window
 
-    def _process_humanized_syntax_template(self, data, jinja_rendered_template_data=None):
-        if jinja_rendered_template_data:
-            humanized_template = self.meta_model.model_from_str(jinja_rendered_template_data)
-        else:
-            specific_template_dir = os.path.dirname(self.current_template_path)
-            template_name = os.path.basename(self.current_template_path)
+        specific_template_dir = os.path.dirname(self.current_template_path)
+        template_name = os.path.basename(self.current_template_path)
 
-            env = Environment(loader=FileSystemLoader(specific_template_dir), undefined=StrictUndefined)
-            template = env.get_template(template_name)
-            content = template.render(self.parameters_file_dict)
-            content = mwo.remove_indentation(content)
-            content = mwo.remove_extra_blank_lines(content)
+        env = Environment(loader=FileSystemLoader(specific_template_dir), undefined=StrictUndefined)
+        template = env.get_template(template_name)
+        content = template.render(self.parameters_file_dict)
+        content = mwo.remove_indentation(content)
+        content = mwo.remove_extra_blank_lines(content)
 
-            humanized_template = self.meta_model.model_from_str(content)
+        humanized_template = self.meta_model.model_from_str(content)
             
         self.sub_cycle_count = 1
         self.cycle_count = 1
@@ -892,6 +879,11 @@ class HumanizedSyntaxProcessFeatures:
         for self.instruction in humanized_template.instructions:
             line = self.process_instruction()
             data.append(line)
+        
+        # when the user select a template in the main interface, we only process the template to see if there are errors (this happens when data_return=False)
+        # when data_return = True, return data and self.show_warning_window
+        if data_return:
+            return data, self.show_warning_window
 
     def process_instruction(self):
         """Process every instruction using the textX grammar defined in grammar.tx"""
