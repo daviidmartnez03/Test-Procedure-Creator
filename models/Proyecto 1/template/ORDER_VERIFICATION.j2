@@ -1,0 +1,10 @@
+{% for id in ID_VALUES %}
+    {{IN_ORDER_MESSAGE}}.{{IN_ORDER_ID_SIGNAL}} = {{id}}
+    {{IN_ORDER_MESSAGE}}.{{IN_ORDER_REF_SIGNAL}} = {{PRODUCT_REFS[loop.index0]}}
+    SEND: {{IN_ORDER_MESSAGE}}
+    END_CYCLE
+
+    VER: {{OUT_ORDER_MESSAGE}}.{{OUT_ORDER_SIGNALS[0]}} = {{OUT_ID_VALUES[loop.index0]}}
+    VER: {{OUT_ORDER_MESSAGE}}.{{OUT_ORDER_SIGNALS[1]}} = {{OUT_REF_VALUES[loop.index0]}}
+    END_CYCLE
+{% endfor %}

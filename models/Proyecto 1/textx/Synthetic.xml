@@ -19,10 +19,10 @@
             <Information InformationName="SIGNAL_9" Type="bool"/>
           </Level>
         </Message>
-        <Message MessageName="MESSAGE_2">
+        <Message MessageName="NEW_ORDER">
           <Level LevelName="LEVEL_2">
-            <Information InformationName="SIGNAL_10" Type="bool"/>
-            <Information InformationName="SIGNAL_11" Type="bool"/>
+            <Information InformationName="CREATE_ORDER" Type="bool"/>
+            <Information InformationName="PRODUCT_REF" Type="bool"/>
             <Information InformationName="SIGNAL_12" Type="bool"/>
             <Information InformationName="SIGNAL_13" Type="bool"/>
             <Information InformationName="SIGNAL_14" Type="bool"/>
@@ -56,6 +56,15 @@
             <Information InformationName="PREPARE_DATA" Type="enum">
               <Values EnumValue="SEARCH" Value="2"/>
               <Values EnumValue="ON" Value="1"/>
+            </Information>
+            <Information InformationName="SIGNAL_21" Type="uint"/>
+          </Level>
+        </Message>
+        <Message MessageName="REMOVE_DATA">
+          <Level LevelName="">
+            <Information InformationName="CLEAR" Type="enum">
+              <Values EnumValue="SEARCH" Value="2"/>
+              <Values EnumValue="TRUE" Value="1"/>
             </Information>
             <Information InformationName="SIGNAL_21" Type="uint"/>
           </Level>
@@ -105,6 +114,32 @@
             <Information InformationName="CALCULATE_DATA" Type="enum">
               <Values EnumValue="ON" Value="0"/>
               <Values EnumValue="OFF" Value="1"/>
+              <Values EnumValue="UPDATE" Value="2"/>
+              <Values EnumValue="LISTEN" Value="3"/>
+            </Information>
+          </Level>
+        </Message>
+        <Message MessageName="ADD_DATA">
+          <Level LevelName="">
+            <Information InformationName="UPLOAD" Type="enum">
+              <Values EnumValue="ON" Value="0"/>
+              <Values EnumValue="TRUE" Value="1"/>
+              <Values EnumValue="UPDATE" Value="2"/>
+              <Values EnumValue="LISTEN" Value="3"/>
+            </Information>
+          </Level>
+        </Message>
+        <Message MessageName="ORDER_CREATED">
+          <Level LevelName="">
+            <Information InformationName="CHECK_ID" Type="enum">
+              <Values EnumValue="ON" Value="0"/>
+              <Values EnumValue="TRUE" Value="1"/>
+              <Values EnumValue="UPDATE" Value="2"/>
+              <Values EnumValue="LISTEN" Value="3"/>
+            </Information>
+            <Information InformationName="CHECK_REF" Type="enum">
+              <Values EnumValue="ON" Value="0"/>
+              <Values EnumValue="TRUE" Value="1"/>
               <Values EnumValue="UPDATE" Value="2"/>
               <Values EnumValue="LISTEN" Value="3"/>
             </Information>
