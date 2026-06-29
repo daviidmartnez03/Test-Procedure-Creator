@@ -518,22 +518,6 @@ def open_model_syntax_settings_window(root):
         except Exception as e: 
             print(f"Error: {e}")
 
-    def save_new_syntax_with_confirmation():
-        """Asks for confirmation before proceeding with the save operation"""
-        
-        # Show the confirmation dialog
-        response = messagebox.askokcancel(
-            title="Syntax Mismatch Warning",
-            message="Changing the global syntax will restrict the 'Process Files' feature to the new format. Existing parameter files with different syntax will no longer be compatible for processing. \n\nAre you sure you want to apply these changes?",
-            icon="question" # Adds a question mark icon
-        )
-
-        # Handle the response
-        if response:
-            save_changes() 
-        else:
-            return 
-
     def save_changes():
         try:
             if not active_toggle_var.get():
@@ -598,7 +582,7 @@ def open_model_syntax_settings_window(root):
     
     tk.Button(
         win, text="Save", bg="#4CAF50", fg="white", font=("Helvetica", 11, "bold"), 
-        width=18, command=save_new_syntax_with_confirmation
+        width=18, command=save_changes
     ).pack(pady=(0, 20), ipady=5)
     
     toggle_state()
