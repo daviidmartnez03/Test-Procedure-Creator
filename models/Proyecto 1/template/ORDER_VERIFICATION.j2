@@ -1,6 +1,6 @@
 {% for id in ID_VALUES %}
-    {{IN_ORDER_MESSAGE}}.{{IN_ORDER_ID_SIGNAL}} = {{id}}
     {{IN_ORDER_MESSAGE}}.{{IN_ORDER_REF_SIGNAL}} = {{PRODUCT_REFS[loop.index0]}}
+    {{IN_ORDER_MESSAGE}}.{{IN_ORDER_ID_SIGNAL}} = {{id}}
     SEND: {{IN_ORDER_MESSAGE}}
     END_CYCLE
 
