@@ -10,3 +10,4 @@ __pycache__/
 !models/.gitkeep
 models/macros.j2
 syntax/*
+output/*
