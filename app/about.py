@@ -2,8 +2,13 @@ import tkinter as tk
 from tkinter import messagebox
 
 def show_about():
-    '''Displays a simple popup with the software version'''
-    messagebox.showinfo("Version", "Version: 1.1")
+    '''Displays a simple popup with the software version and basic info'''
+    about_text = (
+        "Test Procedure Creator\n"
+        "Version: 2.0\n\n"
+        "Automated test generation tool using Jinja2 and textX (DSL)."
+    )
+    messagebox.showinfo("About", about_text)
 
 def open_manual():
     '''Create a secondary window to display the user manual'''
@@ -21,23 +26,28 @@ def open_manual():
     scroll.pack(side="right", fill="y")
 
     manual_content = """
-    How it works
-    
-    1. The tool takes an input file and a template and generates an output file.
+    How it works:
+    This tool automates test script generation by separating data dictionaries (Parameter Files) from validation logic (Templates), using Jinja2 and a custom Domain-Specific Language (DSL).
 
-    2. The tool generates a complete test depending on the input file and the template selected.
+    Workflow / How to use it:
 
-    How to use it
+    1. Configuration (Config Menu):
+    - 'Default Paths': Set your default directories for inputs, templates, and outputs.
+    - 'Model Syntax': Define the syntax rules for your data dictionaries.
 
-    1. Select your input file.
+    2. Preparation (Tools Menu):
+    - 'Parameter File Editor': Create and save your data dictionaries in a grid-based interface.
+    - 'Template Editor' / 'Humanized Syntax Template Editor': Write your test logic using standard Jinja2 or the humanized DSL syntax. 
 
-    2. Select the corresponding template.
+    3. Processing (Main Interface):
+    - Step 1: Select one or multiple Parameter Files.
+    - Step 2: Select the Template File.
+    - Choose the processing method: 'Normal Processing' (Jinja2 only) or 'Humanized Syntax Processing' (Jinja2 + textX DSL).
+    - Step 0: Select the Output Directory.
+    - Click 'Process Files'.
 
-    3. Select the output directory
-
-    4. Press the button "Process Files".
-
-    5. Find the output file generated in the selected directory.
+    4. Review:
+    - Use the 'Processed File Viewer' in the Tools menu to verify your generated scripts.
     """
     # Insert text and then lock the widget so users cannot edit the manual
     text.insert(tk.END, manual_content)
@@ -59,8 +69,13 @@ def show_new_features():
     new_features_content = """
     New features:
 
-    1. Click the 'Config' menu to configure and save your predefined directories or to modify/activate/deactivate a syntax model.
-    2. Click 'Input File Creator' in the 'Tools' menu to create an input file with the chosen model syntax.
+    • Multi-flow Processing: Choose between standard Jinja2 rendering or the new Advanced Humanized Syntax processing (DSL translation via textX).
+    • Specialized Specialized Editors: 
+        - Grid-based Parameter File Editor for easy data definition.
+        - Advanced Template Editors with real-time syntax highlighting, variable autocompletion, and code injection shortcuts.
+    • Dynamic Route Resolution: Automatic mapping and resolution of message/signal paths via XML parsing.
+    • Modernized UI: Fully upgraded graphical interface using CustomTkinter for a smoother user experience.
+    • Smart Assistance: Compatible with the external Gemini AI Assistant to help you draft test logic, validate syntax, and resolve coding doubts.
     """
     text.insert(tk.END, new_features_content)
     text.configure(state="disabled")  # Set to read-only
